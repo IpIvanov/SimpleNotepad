@@ -18,7 +18,15 @@ public class NotepadDemo {
 		System.lineSeparator();
 		int pages = Integer.parseInt(br.readLine());
 		SimpleNotepad notePadObject = new SimpleNotepad(name, pages);
+		System.out.println("Do you want to secure your notepad?  YES/NO");
+		String secureChoice = br.readLine();
 		System.out.println("--------------------------------");
+		if (secureChoice.equals("YES")) {
+			System.out.println("What is your password? ");
+			String password = br.readLine();
+			notePadObject.setPassword(password);
+			notePadObject.secureNotepadEnabled();
+		}
 		while (true) {
 			System.out.println("1. Add text to the page content.");
 			System.out.println("2. Replace text from the page content.");
@@ -29,10 +37,20 @@ public class NotepadDemo {
 			System.out.println("--------------------------------");
 			System.out.print("Your Choice: ");
 			String choice = br.readLine();
-			System.out.println(choice);
 
 			switch (choice) {
 			case "1":
+				if (notePadObject.isNotepadSecured) {
+					System.out.println("What is your password?");
+					String password = br.readLine();
+					if (notePadObject.checkPassword(password)) {
+						System.out.println("Correct password.");
+					} else {
+						System.out.println("Wrong password try again.");
+						System.out.println("--------------------------------");
+						break;
+					}
+				}
 				System.out.println("--------------------------------");
 				System.out.print("Enter the content you want to add: ");
 				System.lineSeparator();
@@ -42,6 +60,7 @@ public class NotepadDemo {
 				int pageNumber = Integer.parseInt(br.readLine());
 				notePadObject.addContentToPage(addedContent, pageNumber);
 				System.out.println("--------------------------------");
+
 				break;
 			case "2":
 				System.out.println("--------------------------------");

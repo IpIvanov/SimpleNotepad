@@ -2,7 +2,7 @@ package notepad;
 
 import notepad.Page;
 
-public class SimpleNotepad implements INotepad {
+public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	public String notepadName;
 	public int numberOfPages;
 	public Page[] colectionPages;
@@ -36,12 +36,22 @@ public class SimpleNotepad implements INotepad {
 
 	@Override
 	public void replaceContentToPage(String newContent, int pageNumber) {
-		colectionPages[pageNumber].content = newContent;
+		try {
+			colectionPages[pageNumber].content = newContent;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("--------------------------------");
+			System.out.println("Sorry, No Such Page.");
+		}
 	}
 
 	@Override
 	public void removeContentFromPage(int pageNumber) {
-		colectionPages[pageNumber].content = "";
+		try {
+			colectionPages[pageNumber].content = "";
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("--------------------------------");
+			System.out.println("Sorry, No Such Page.");
+		}
 	}
 
 	@Override
