@@ -1,1 +1,1 @@
-# SimpleNotepad
+A simple Notepad using Java
