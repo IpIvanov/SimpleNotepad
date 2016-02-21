@@ -23,5 +23,4 @@ public class SecuredNotepad {
 	public void secureNotepadEnabled(){
 		isNotepadSecured = true;
 	}
-
 }

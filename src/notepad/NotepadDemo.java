@@ -10,7 +10,6 @@ public class NotepadDemo {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("--------------------------------");
 		System.out.print("Enter the name of the notepad: ");
 		System.lineSeparator();
 		String name = br.readLine();
@@ -31,13 +30,14 @@ public class NotepadDemo {
 			System.out.println("1. Add text to the page content.");
 			System.out.println("2. Replace text from the page content.");
 			System.out.println("3. Delete content from page.");
-			System.out.println("4. Print notepad content");
-			System.out.println("5. Print notepad title");
+			System.out.println("4. Search for specific word");
+			System.out.println("5. Print notepad content");
+			System.out.println("6. Print notepad title");
+			System.out.println("7. Print all pages with digits");
 			System.out.println("0. EXIT");
 			System.out.println("--------------------------------");
 			System.out.print("Your Choice: ");
 			String choice = br.readLine();
-
 			switch (choice) {
 			case "1":
 				if (notePadObject.isNotepadSecured) {
@@ -60,9 +60,19 @@ public class NotepadDemo {
 				int pageNumber = Integer.parseInt(br.readLine());
 				notePadObject.addContentToPage(addedContent, pageNumber);
 				System.out.println("--------------------------------");
-
 				break;
 			case "2":
+				if (notePadObject.isNotepadSecured) {
+					System.out.println("What is your password?");
+					String password = br.readLine();
+					if (notePadObject.checkPassword(password)) {
+						System.out.println("Correct password.");
+					} else {
+						System.out.println("Wrong password try again.");
+						System.out.println("--------------------------------");
+						break;
+					}
+				}
 				System.out.println("--------------------------------");
 				System.out.print("Enter the new content: ");
 				System.lineSeparator();
@@ -74,6 +84,17 @@ public class NotepadDemo {
 				System.out.println("--------------------------------");
 				break;
 			case "3":
+				if (notePadObject.isNotepadSecured) {
+					System.out.println("What is your password?");
+					String password = br.readLine();
+					if (notePadObject.checkPassword(password)) {
+						System.out.println("Correct password.");
+					} else {
+						System.out.println("Wrong password try again.");
+						System.out.println("--------------------------------");
+						break;
+					}
+				}
 				System.out.println("--------------------------------");
 				System.out.print("Enter the page you want to delete: ");
 				System.lineSeparator();
@@ -82,10 +103,18 @@ public class NotepadDemo {
 				System.out.println("--------------------------------");
 				break;
 			case "4":
-				notePadObject.printBook(notePadObject);
+				System.out.println("Search for word?");
+				String word = br.readLine();
+				notePadObject.searchWord(word);
 				break;
 			case "5":
+				notePadObject.printNotepad(notePadObject);
+				break;
+			case "6":
 				notePadObject.printNotePadName(notePadObject);
+				break;
+			case "7":
+				notePadObject.printAllPagesWithDigits();
 				break;
 			case "0":
 				System.out.println("Exit");

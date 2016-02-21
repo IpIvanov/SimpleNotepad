@@ -1,6 +1,5 @@
 package notepad;
 
-
 public class Page {
 	public String title;
 	public String content;
@@ -14,9 +13,27 @@ public class Page {
 		content = content + " " + newContent;
 	}
 
+	public void deleteContent() {
+		content = "";
+	}
+
 	public void printPage() {
 		System.out.println(title);
 		System.out.println(content);
 	}
 	
+	public boolean searchWord(String word){
+		if(content.contains(word)){
+			return true;
+		}
+		else return false;
+	}
+	
+	public boolean containsDigits(){
+		if(content.matches(".*\\d+.*")){
+			return true;
+		}
+		else return false;
+	}
+
 }
