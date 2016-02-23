@@ -25,7 +25,7 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	@Override
 	public void addContentToPage(String newContent, int pageNumber) {
 		try {
-			colectionPages[pageNumber].content = colectionPages[pageNumber].content + " " + newContent;
+			colectionPages[pageNumber].addContent(newContent);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("--------------------------------");
 			System.out.println("Sorry, No Such Page.");
@@ -35,7 +35,7 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	@Override
 	public void replaceContentToPage(String newContent, int pageNumber) {
 		try {
-			colectionPages[pageNumber].content = newContent;
+			colectionPages[pageNumber].replaceContent(newContent);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("--------------------------------");
 			System.out.println("Sorry, No Such Page.");
@@ -45,7 +45,7 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	@Override
 	public void removeContentFromPage(int pageNumber) {
 		try {
-			colectionPages[pageNumber].content = "";
+			colectionPages[pageNumber].deleteContent();
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("--------------------------------");
 			System.out.println("Sorry, No Such Page.");
@@ -65,31 +65,38 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	@Override
 	public void searchWord(String word) {
 		for (int i = 1; i <= numberOfPages; i++) {
-			if(colectionPages[i].searchWord(word)){
-				System.out.println("The word " + word + " is in " + i + " page");
+			if (colectionPages[i].searchWord(word)) {
 				System.out.println("--------------------------------");
-			}
-			else{
-				System.out.println("No match");
+				System.out.println("The word " + word + " is in " + ordinal(i) + " page");
 				System.out.println("--------------------------------");
 			}
 		}
-		
+
+	}
+
+	public static String ordinal(int i) {
+		String[] sufixes = new String[] { "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th" };
+		switch (i % 100) {
+		case 11:
+		case 12:
+		case 13:
+			return i + "th";
+		default:
+			return i + sufixes[i % 10];
+
+		}
 	}
 
 	@Override
 	public void printAllPagesWithDigits() {
 		for (int i = 1; i <= numberOfPages; i++) {
-			if(colectionPages[i].containsDigits()){
+			if (colectionPages[i].containsDigits()) {
+				System.out.println("--------------------------------");
 				colectionPages[i].printPage();
 				System.out.println("--------------------------------");
 			}
-			else{
-				System.out.println("This page has no digits");
-				System.out.println("--------------------------------");
-			}
 		}
-		
+
 	}
 
 }

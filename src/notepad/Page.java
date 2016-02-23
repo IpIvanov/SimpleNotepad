@@ -16,6 +16,10 @@ public class Page {
 	public void deleteContent() {
 		content = "";
 	}
+	
+	public void replaceContent(String newContent) {
+		content = newContent;
+	}
 
 	public void printPage() {
 		System.out.println(title);

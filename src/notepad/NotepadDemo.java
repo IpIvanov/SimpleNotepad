@@ -24,7 +24,7 @@ public class NotepadDemo {
 			System.out.println("What is your password? ");
 			String password = br.readLine();
 			notePadObject.setPassword(password);
-			notePadObject.secureNotepadEnabled();
+			notePadObject.togglePasswordMode();
 		}
 		while (true) {
 			System.out.println("1. Add text to the page content.");
