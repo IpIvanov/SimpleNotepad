@@ -10,7 +10,7 @@ public class Page {
 	}
 
 	public void addContent(String newContent) {
-		content = content + " " + newContent;
+		content += " " + newContent;
 	}
 
 	public void deleteContent() {

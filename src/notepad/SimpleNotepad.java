@@ -5,14 +5,14 @@ import notepad.Page;
 public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	public String notepadName;
 	public int numberOfPages;
-	public Page[] colectionPages;
+	public Page[] pagesArray;
 
 	public SimpleNotepad(String name, int pages) {
 		notepadName = name;
 		numberOfPages = pages;
-		colectionPages = new Page[numberOfPages + 1];
+		pagesArray = new Page[numberOfPages + 1];
 		for (int i = 1; i <= pages; i++) {
-			colectionPages[i] = new Page("Default Title " + i, "Default Content " + i);
+			pagesArray[i] = new Page("Default Title " + i, "Default Content " + i);
 		}
 	}
 
@@ -25,7 +25,7 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	@Override
 	public void addContentToPage(String newContent, int pageNumber) {
 		try {
-			colectionPages[pageNumber].addContent(newContent);
+			pagesArray[pageNumber].addContent(newContent);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("--------------------------------");
 			System.out.println("Sorry, No Such Page.");
@@ -35,7 +35,7 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	@Override
 	public void replaceContentToPage(String newContent, int pageNumber) {
 		try {
-			colectionPages[pageNumber].replaceContent(newContent);
+			pagesArray[pageNumber].replaceContent(newContent);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("--------------------------------");
 			System.out.println("Sorry, No Such Page.");
@@ -45,7 +45,7 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	@Override
 	public void removeContentFromPage(int pageNumber) {
 		try {
-			colectionPages[pageNumber].deleteContent();
+			pagesArray[pageNumber].deleteContent();
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("--------------------------------");
 			System.out.println("Sorry, No Such Page.");
@@ -56,8 +56,8 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	public void printNotepad(SimpleNotepad notePad) {
 		System.out.println("--------------------------------");
 		for (int i = 1; i <= numberOfPages; i++) {
-			System.out.println(colectionPages[i].title);
-			System.out.println(colectionPages[i].content);
+			System.out.println(pagesArray[i].title);
+			System.out.println(pagesArray[i].content);
 		}
 		System.out.println("--------------------------------");
 	}
@@ -65,7 +65,7 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	@Override
 	public void searchWord(String word) {
 		for (int i = 1; i <= numberOfPages; i++) {
-			if (colectionPages[i].searchWord(word)) {
+			if (pagesArray[i].searchWord(word)) {
 				System.out.println("--------------------------------");
 				System.out.println("The word " + word + " is in " + ordinal(i) + " page");
 				System.out.println("--------------------------------");
@@ -90,9 +90,9 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	@Override
 	public void printAllPagesWithDigits() {
 		for (int i = 1; i <= numberOfPages; i++) {
-			if (colectionPages[i].containsDigits()) {
+			if (pagesArray[i].containsDigits()) {
 				System.out.println("--------------------------------");
-				colectionPages[i].printPage();
+				pagesArray[i].printPage();
 				System.out.println("--------------------------------");
 			}
 		}
