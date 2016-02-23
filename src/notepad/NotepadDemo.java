@@ -39,6 +39,8 @@ public class NotepadDemo {
 			System.out.println("10. Enable/Disable password mode");
 			System.out.println("0. EXIT");
 			System.out.println("--------------------------------");
+			if (!notePadObject.isStarted())
+				System.out.println("Notepad is disabled!!!");
 			System.out.print("Your Choice: ");
 			String choice = br.readLine();
 
