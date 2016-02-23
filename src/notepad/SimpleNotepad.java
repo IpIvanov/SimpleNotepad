@@ -16,9 +16,9 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 		}
 	}
 
-	public void printNotePadName(SimpleNotepad notePad) {
+	public void printNotePadName() {
 		System.out.println("--------------------------------");
-		System.out.println(notePad.notepadName);
+		System.out.println(notepadName);
 		System.out.println("--------------------------------");
 	}
 

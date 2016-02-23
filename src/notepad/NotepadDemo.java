@@ -129,7 +129,7 @@ public class NotepadDemo {
 			case "6":
 				if (!notePadObject.isStarted())
 					break;
-				notePadObject.printNotePadName(notePadObject);
+				notePadObject.printNotePadName();
 				break;
 			case "7":
 				if (!notePadObject.isStarted())
@@ -148,7 +148,6 @@ public class NotepadDemo {
 					System.out.println("What is your password? ");
 					String password = br.readLine();
 					notePadObject.setPassword(password);
-					notePadObject.secureNotepadEnabled();
 				}
 				break;
 			case "0":
