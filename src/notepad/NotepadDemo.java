@@ -14,9 +14,9 @@ public class NotepadDemo {
 		System.lineSeparator();
 		String name = br.readLine();
 		System.out.print("Enter Number of pages: ");
-		System.lineSeparator();
 		int pages = Integer.parseInt(br.readLine());
 		SimpleNotepad notePadObject = new SimpleNotepad(name, pages);
+		notePadObject.startNotepad();
 		System.out.println("Do you want to secure your notepad?  YES/NO");
 		String secureChoice = br.readLine();
 		System.out.println("--------------------------------");
@@ -34,12 +34,18 @@ public class NotepadDemo {
 			System.out.println("5. Print notepad content");
 			System.out.println("6. Print notepad title");
 			System.out.println("7. Print all pages with digits");
+			System.out.println("8. Disable Notepad");
+			System.out.println("9. Enable Notepad");
+			System.out.println("10. Enable/Disable password mode");
 			System.out.println("0. EXIT");
 			System.out.println("--------------------------------");
 			System.out.print("Your Choice: ");
 			String choice = br.readLine();
+
 			switch (choice) {
 			case "1":
+				if (!notePadObject.isStarted())
+					break;
 				if (notePadObject.isNotepadSecured) {
 					System.out.println("What is your password?");
 					String password = br.readLine();
@@ -62,6 +68,8 @@ public class NotepadDemo {
 				System.out.println("--------------------------------");
 				break;
 			case "2":
+				if (!notePadObject.isStarted())
+					break;
 				if (notePadObject.isNotepadSecured) {
 					System.out.println("What is your password?");
 					String password = br.readLine();
@@ -84,6 +92,8 @@ public class NotepadDemo {
 				System.out.println("--------------------------------");
 				break;
 			case "3":
+				if (!notePadObject.isStarted())
+					break;
 				if (notePadObject.isNotepadSecured) {
 					System.out.println("What is your password?");
 					String password = br.readLine();
@@ -103,18 +113,41 @@ public class NotepadDemo {
 				System.out.println("--------------------------------");
 				break;
 			case "4":
+				if (!notePadObject.isStarted())
+					break;
 				System.out.println("Search for word?");
 				String word = br.readLine();
 				notePadObject.searchWord(word);
 				break;
 			case "5":
+				if (!notePadObject.isStarted())
+					break;
 				notePadObject.printNotepad(notePadObject);
 				break;
 			case "6":
+				if (!notePadObject.isStarted())
+					break;
 				notePadObject.printNotePadName(notePadObject);
 				break;
 			case "7":
+				if (!notePadObject.isStarted())
+					break;
 				notePadObject.printAllPagesWithDigits();
+				break;
+			case "8":
+				notePadObject.stopNotepad();
+				break;
+			case "9":
+				notePadObject.startNotepad();
+				break;
+			case "10":
+				notePadObject.togglePasswordMode();
+				if (notePadObject.getPassword() == null) {
+					System.out.println("What is your password? ");
+					String password = br.readLine();
+					notePadObject.setPassword(password);
+					notePadObject.secureNotepadEnabled();
+				}
 				break;
 			case "0":
 				System.out.println("Exit");
@@ -123,6 +156,7 @@ public class NotepadDemo {
 				System.out.println("Exit");
 				return;
 			}
+
 		}
 	}
 
