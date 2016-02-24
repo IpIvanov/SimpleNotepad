@@ -14,7 +14,17 @@ public class NotepadDemo {
 		System.lineSeparator();
 		String name = br.readLine();
 		System.out.print("Enter Number of pages: ");
-		int pages = Integer.parseInt(br.readLine());
+		Integer pages = null;
+		while (true) {
+			try {
+				pages = Integer.parseInt(br.readLine());
+				if (pages == (int) pages && pages > 0) {
+					break;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Please enter a number bigger than 0");
+			}
+		}
 		SimpleNotepad notePadObject = new SimpleNotepad(name, pages);
 		notePadObject.startNotepad();
 		System.out.println("Do you want to secure your notepad?  YES/NO");
@@ -65,8 +75,18 @@ public class NotepadDemo {
 				String addedContent = br.readLine();
 				System.out.print("Enter the page you want to edit: ");
 				System.lineSeparator();
-				int pageNumber = Integer.parseInt(br.readLine());
-				notePadObject.addContentToPage(addedContent, pageNumber);
+				Integer pageNumber = null;
+				while (true) {
+					try {
+						pageNumber = Integer.parseInt(br.readLine());
+						notePadObject.addContentToPage(addedContent, pageNumber);
+						if (pages == (int) pages && pages > 0) {
+							break;
+						}
+					} catch (NumberFormatException e) {
+						System.out.println("Please enter a number bigger than 0 and with range of the pages");
+					}
+				}
 				System.out.println("--------------------------------");
 				break;
 			case "2":
@@ -89,8 +109,18 @@ public class NotepadDemo {
 				String newContent = br.readLine();
 				System.out.print("Enter the page you want to edit: ");
 				System.lineSeparator();
-				int pageNumber2 = Integer.parseInt(br.readLine());
-				notePadObject.replaceContentToPage(newContent, pageNumber2);
+				Integer pageNumber2 = null;
+				while (true) {
+					try {
+						pageNumber2 = Integer.parseInt(br.readLine());
+						notePadObject.replaceContentToPage(newContent, pageNumber2);
+						if (pages == (int) pages && pages > 0) {
+							break;
+						}
+					} catch (NumberFormatException e) {
+						System.out.println("Please enter a number bigger than 0 and with range of the pages");
+					}
+				}
 				System.out.println("--------------------------------");
 				break;
 			case "3":
@@ -110,13 +140,34 @@ public class NotepadDemo {
 				System.out.println("--------------------------------");
 				System.out.print("Enter the page you want to delete: ");
 				System.lineSeparator();
-				int pageNumber3 = Integer.parseInt(br.readLine());
-				notePadObject.removeContentFromPage(pageNumber3);
+				Integer pageNumber3 = null;
+				while (true) {
+					try {
+						pageNumber3 = Integer.parseInt(br.readLine());
+						notePadObject.removeContentFromPage(pageNumber3);
+						if (pages == (int) pages && pages > 0) {
+							break;
+						}
+					} catch (NumberFormatException e) {
+						System.out.println("Please enter a number bigger than 0 and with range of the pages");
+					}
+				}
 				System.out.println("--------------------------------");
 				break;
 			case "4":
 				if (!notePadObject.isStarted())
 					break;
+				if (notePadObject.isNotepadSecured) {
+					System.out.println("What is your password?");
+					String password = br.readLine();
+					if (notePadObject.checkPassword(password)) {
+						System.out.println("Correct password.");
+					} else {
+						System.out.println("Wrong password try again.");
+						System.out.println("--------------------------------");
+						break;
+					}
+				}
 				System.out.println("Search for word?");
 				String word = br.readLine();
 				notePadObject.searchWord(word);

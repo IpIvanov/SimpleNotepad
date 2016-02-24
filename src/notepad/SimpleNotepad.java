@@ -2,7 +2,7 @@ package notepad;
 
 import notepad.Page;
 
-public class SimpleNotepad extends SecuredNotepad implements INotepad {
+public class SimpleNotepad extends SecuredNotepad implements INotepad, IÅlectronicDevice {
 	public String notepadName;
 	public int numberOfPages;
 	public Page[] pagesArray;
@@ -68,6 +68,11 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 			if (pagesArray[i].searchWord(word)) {
 				System.out.println("--------------------------------");
 				System.out.println("The word " + word + " is in " + ordinal(i) + " page");
+				System.out.println("--------------------------------");
+			}
+			else{
+				System.out.println("--------------------------------");
+				System.out.println("No match found");
 				System.out.println("--------------------------------");
 			}
 		}

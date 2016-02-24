@@ -20,9 +20,9 @@ public class SecuredNotepad extends ElectronicSecuredNotepad {
 			return false;
 	}
 
-//	public void secureNotepadEnabled() {
-//		isNotepadSecured = true;
-//	}
+	// public void secureNotepadEnabled() {
+	// isNotepadSecured = true;
+	// }
 
 	public void togglePasswordMode() {
 		if (isNotepadSecured) {
@@ -31,4 +31,5 @@ public class SecuredNotepad extends ElectronicSecuredNotepad {
 			isNotepadSecured = true;
 		}
 	}
+
 }
