@@ -2,7 +2,7 @@ package notepad;
 
 import notepad.Page;
 
-public class SimpleNotepad extends SecuredNotepad implements INotepad, IÅlectronicDevice {
+public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	public String notepadName;
 	public int numberOfPages;
 	public Page[] pagesArray;
