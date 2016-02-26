@@ -28,4 +28,26 @@ public class SecuredNotepad extends SimpleNotepad {
 	public boolean getNotepadSecureState() {
 		return isNotepadSecured;
 	}
+
+	public static boolean checkIfStrongPass(String password) {
+		char ch;
+		int lowerCaseLetters = 0;
+		int upperCaseLettesrs = 0;
+		int digits = 0;
+		for (int i = 0; i < password.length(); i++) {
+			ch = password.charAt(i);
+			if (Character.isLowerCase(ch)) {
+				lowerCaseLetters++;
+			} else if (Character.isUpperCase(ch)) {
+				upperCaseLettesrs++;
+			} else if (Character.isDigit(ch)) {
+				digits++;
+			}
+		}
+		if (password.length() >= 5 && lowerCaseLetters >= 1 && upperCaseLettesrs >= 1 && digits >= 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

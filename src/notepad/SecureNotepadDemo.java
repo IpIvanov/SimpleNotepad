@@ -8,25 +8,33 @@ public class SecureNotepadDemo {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("Enter the name of the notepad: ");
-		System.lineSeparator();
-		String name = br.readLine();
-		System.out.print("Enter Number of pages: ");
+		SecuredNotepad notePadObject = null;
+		String name = null;
 		Integer pages = null;
-		while (true) {
-			try {
-				pages = Integer.parseInt(br.readLine());
-				if (pages == (int) pages && pages > 0) {
-					break;
-				}
-			} catch (NumberFormatException e) {
-				System.out.println("Please enter a number bigger than 0");
-			}
-		}
-		SecuredNotepad notePadObject = new SecuredNotepad(name, pages);
 		System.out.println("What is your password? ");
-		String setPass = br.readLine();
-		notePadObject.setPassword(setPass);
+		while (true) {
+			String setPass = br.readLine();
+			if (SecuredNotepad.checkIfStrongPass(setPass)) {
+				System.out.print("Enter the name of the notepad: ");
+				name = br.readLine();
+				System.out.print("Enter Number of pages: ");
+				while (true) {
+					try {
+						pages = Integer.parseInt(br.readLine());
+						if (pages == (int) pages && pages > 0) {
+							break;
+						}
+					} catch (NumberFormatException e) {
+						System.out.println("Please enter a number bigger than 0");
+					}
+				}
+				notePadObject = new SecuredNotepad(name, pages);
+				notePadObject.setPassword(setPass);
+				break;
+			}
+			System.out.println(
+					"Please enter secure password with one or more lowercase, uppercase and digit and 5 or more symbols in total");
+		}
 
 		while (true) {
 			System.out.println("1. Add text to the page content.");
