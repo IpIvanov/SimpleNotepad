@@ -1,11 +1,9 @@
 package notepad;
 
-import notepad.Page;
-
-public class SimpleNotepad extends SecuredNotepad implements INotepad {
-	public String notepadName;
-	public int numberOfPages;
-	public Page[] pagesArray;
+public class SimpleNotepad implements INotepad {
+	private String notepadName;
+	private int numberOfPages;
+	private Page[] pagesArray;
 
 	public SimpleNotepad(String name, int pages) {
 		notepadName = name;
@@ -56,8 +54,7 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 	public void printNotepad(SimpleNotepad notePad) {
 		System.out.println("--------------------------------");
 		for (int i = 1; i <= numberOfPages; i++) {
-			System.out.println(pagesArray[i].title);
-			System.out.println(pagesArray[i].content);
+			pagesArray[i].printPage();
 		}
 		System.out.println("--------------------------------");
 	}
@@ -69,8 +66,7 @@ public class SimpleNotepad extends SecuredNotepad implements INotepad {
 				System.out.println("--------------------------------");
 				System.out.println("The word " + word + " is in " + ordinal(i) + " page");
 				System.out.println("--------------------------------");
-			}
-			else{
+			} else {
 				System.out.println("--------------------------------");
 				System.out.println("No match found");
 				System.out.println("--------------------------------");

@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class NotepadDemo {
+public class ElectronicSecuredNotepadDemo {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,7 +23,8 @@ public class NotepadDemo {
 				System.out.println("Please enter a number bigger than 0");
 			}
 		}
-		SimpleNotepad notePadObject = new SimpleNotepad(name, pages);
+		ElectronicSecuredNotepad notePadObject = new ElectronicSecuredNotepad(name, pages);
+		notePadObject.startNotepad();
 		while (true) {
 			System.out.println("1. Add text to the page content.");
 			System.out.println("2. Replace text from the page content.");
@@ -32,13 +33,21 @@ public class NotepadDemo {
 			System.out.println("5. Print notepad content");
 			System.out.println("6. Print notepad title");
 			System.out.println("7. Print all pages with digits");
+			System.out.println("8. Disable Notepad");
+			System.out.println("9. Enable Notepad");
 			System.out.println("0. EXIT");
 			System.out.println("--------------------------------");
+			if (!notePadObject.isStarted()) {
+				System.out.println("Notepad is disabled!!!");
+			}
 			System.out.print("Your Choice: ");
 			String choice = br.readLine();
 
 			switch (choice) {
 			case "1":
+				if (!notePadObject.isStarted()) {
+					break;
+				}
 				System.out.println("--------------------------------");
 				System.out.print("Enter the content you want to add: ");
 				System.lineSeparator();
@@ -60,6 +69,9 @@ public class NotepadDemo {
 				System.out.println("--------------------------------");
 				break;
 			case "2":
+				if (!notePadObject.isStarted()) {
+					break;
+				}
 				System.out.println("--------------------------------");
 				System.out.print("Enter the new content: ");
 				System.lineSeparator();
@@ -81,6 +93,9 @@ public class NotepadDemo {
 				System.out.println("--------------------------------");
 				break;
 			case "3":
+				if (!notePadObject.isStarted()) {
+					break;
+				}
 				System.out.println("--------------------------------");
 				System.out.print("Enter the page you want to delete: ");
 				System.lineSeparator();
@@ -99,18 +114,36 @@ public class NotepadDemo {
 				System.out.println("--------------------------------");
 				break;
 			case "4":
+				if (!notePadObject.isStarted()) {
+					break;
+				}
 				System.out.println("Search for word?");
 				String word = br.readLine();
 				notePadObject.searchWord(word);
 				break;
 			case "5":
+				if (!notePadObject.isStarted()) {
+					break;
+				}
 				notePadObject.printNotepad(notePadObject);
 				break;
 			case "6":
+				if (!notePadObject.isStarted()) {
+					break;
+				}
 				notePadObject.printNotePadName();
 				break;
 			case "7":
+				if (!notePadObject.isStarted()) {
+					break;
+				}
 				notePadObject.printAllPagesWithDigits();
+				break;
+			case "8":
+				notePadObject.stopNotepad();
+				break;
+			case "9":
+				notePadObject.startNotepad();
 				break;
 			case "0":
 				System.out.println("Exit");

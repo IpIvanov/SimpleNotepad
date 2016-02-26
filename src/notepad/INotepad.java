@@ -1,10 +1,10 @@
 package notepad;
 
 public interface INotepad {
-	public void addContentToPage(String newContent, int pageNumber);
-	public void replaceContentToPage(String pageContent, int pageNumber);
-	public void removeContentFromPage(int pageNumber);
-	public void printNotepad(SimpleNotepad notePad);
-	public void searchWord(String word);
-	public void printAllPagesWithDigits();
+	void addContentToPage(String newContent, int pageNumber);
+	void replaceContentToPage(String pageContent, int pageNumber);
+	void removeContentFromPage(int pageNumber);
+	void printNotepad(SimpleNotepad notePad);
+	void searchWord(String word);
+	void printAllPagesWithDigits();
 }

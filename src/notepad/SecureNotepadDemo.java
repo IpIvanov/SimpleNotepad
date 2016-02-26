@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class NotepadDemo {
+public class SecureNotepadDemo {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,7 +23,11 @@ public class NotepadDemo {
 				System.out.println("Please enter a number bigger than 0");
 			}
 		}
-		SimpleNotepad notePadObject = new SimpleNotepad(name, pages);
+		SecuredNotepad notePadObject = new SecuredNotepad(name, pages);
+		System.out.println("What is your password? ");
+		String setPass = br.readLine();
+		notePadObject.setPassword(setPass);
+
 		while (true) {
 			System.out.println("1. Add text to the page content.");
 			System.out.println("2. Replace text from the page content.");
@@ -32,6 +36,7 @@ public class NotepadDemo {
 			System.out.println("5. Print notepad content");
 			System.out.println("6. Print notepad title");
 			System.out.println("7. Print all pages with digits");
+			System.out.println("8. Enable/Disable password mode");
 			System.out.println("0. EXIT");
 			System.out.println("--------------------------------");
 			System.out.print("Your Choice: ");
@@ -39,6 +44,17 @@ public class NotepadDemo {
 
 			switch (choice) {
 			case "1":
+				if (notePadObject.getNotepadSecureState()) {
+					System.out.println("What is your password?");
+					String password = br.readLine();
+					if (notePadObject.checkPassword(password)) {
+						System.out.println("Correct password.");
+					} else {
+						System.out.println("Wrong password try again.");
+						System.out.println("--------------------------------");
+						break;
+					}
+				}
 				System.out.println("--------------------------------");
 				System.out.print("Enter the content you want to add: ");
 				System.lineSeparator();
@@ -60,6 +76,17 @@ public class NotepadDemo {
 				System.out.println("--------------------------------");
 				break;
 			case "2":
+				if (notePadObject.getNotepadSecureState()) {
+					System.out.println("What is your password?");
+					String password = br.readLine();
+					if (notePadObject.checkPassword(password)) {
+						System.out.println("Correct password.");
+					} else {
+						System.out.println("Wrong password try again.");
+						System.out.println("--------------------------------");
+						break;
+					}
+				}
 				System.out.println("--------------------------------");
 				System.out.print("Enter the new content: ");
 				System.lineSeparator();
@@ -81,6 +108,17 @@ public class NotepadDemo {
 				System.out.println("--------------------------------");
 				break;
 			case "3":
+				if (notePadObject.getNotepadSecureState()) {
+					System.out.println("What is your password?");
+					String password = br.readLine();
+					if (notePadObject.checkPassword(password)) {
+						System.out.println("Correct password.");
+					} else {
+						System.out.println("Wrong password try again.");
+						System.out.println("--------------------------------");
+						break;
+					}
+				}
 				System.out.println("--------------------------------");
 				System.out.print("Enter the page you want to delete: ");
 				System.lineSeparator();
@@ -99,6 +137,17 @@ public class NotepadDemo {
 				System.out.println("--------------------------------");
 				break;
 			case "4":
+				if (notePadObject.getNotepadSecureState()) {
+					System.out.println("What is your password?");
+					String password = br.readLine();
+					if (notePadObject.checkPassword(password)) {
+						System.out.println("Correct password.");
+					} else {
+						System.out.println("Wrong password try again.");
+						System.out.println("--------------------------------");
+						break;
+					}
+				}
 				System.out.println("Search for word?");
 				String word = br.readLine();
 				notePadObject.searchWord(word);
@@ -111,6 +160,9 @@ public class NotepadDemo {
 				break;
 			case "7":
 				notePadObject.printAllPagesWithDigits();
+				break;
+			case "8":
+				notePadObject.togglePasswordMode();
 				break;
 			case "0":
 				System.out.println("Exit");

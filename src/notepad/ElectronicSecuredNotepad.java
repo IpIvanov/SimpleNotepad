@@ -1,8 +1,12 @@
 package notepad;
 
-public class ElectronicSecuredNotepad implements IÅlectronicDevice {
+public class ElectronicSecuredNotepad extends SecuredNotepad implements IÅlectronicDevice {
 
-	public boolean notepadStage;
+	public ElectronicSecuredNotepad(String name, int pages) {
+		super(name, pages);
+	}
+
+	private boolean notepadStage;
 
 	@Override
 	public void startNotepad() {
@@ -16,10 +20,7 @@ public class ElectronicSecuredNotepad implements IÅlectronicDevice {
 
 	@Override
 	public boolean isStarted() {
-		if (notepadStage) {
-			return true;
-		} else
-			return false;
+		return notepadStage;
 	}
 
 }

@@ -1,8 +1,8 @@
 package notepad;
 
 public class Page {
-	public String title;
-	public String content;
+	private String title;
+	private String content;
 
 	public Page(String pageTitle, String pageContent) {
 		title = pageTitle;
@@ -16,7 +16,7 @@ public class Page {
 	public void deleteContent() {
 		content = "";
 	}
-	
+
 	public void replaceContent(String newContent) {
 		content = newContent;
 	}
@@ -25,19 +25,21 @@ public class Page {
 		System.out.println(title);
 		System.out.println(content);
 	}
-	
-	public boolean searchWord(String word){
-		if(content.contains(word)){
+
+	public boolean searchWord(String word) {
+		if (content.contains(word)) {
 			return true;
+		} else {
+			return false;
 		}
-		else return false;
 	}
-	
-	public boolean containsDigits(){
-		if(content.matches(".*\\d+.*")){
+
+	public boolean containsDigits() {
+		if (content.matches(".*\\d+.*")) {
 			return true;
+		} else {
+			return false;
 		}
-		else return false;
 	}
 
 }

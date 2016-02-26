@@ -1,7 +1,7 @@
 package notepad;
 
 public interface IÅlectronicDevice {
-	public void startNotepad();
-	public void stopNotepad();
-	public boolean isStarted();
+	void startNotepad();
+	void stopNotepad();
+	boolean isStarted();
 }

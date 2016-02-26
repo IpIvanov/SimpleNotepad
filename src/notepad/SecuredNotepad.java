@@ -1,13 +1,13 @@
 package notepad;
 
-public class SecuredNotepad extends ElectronicSecuredNotepad {
+public class SecuredNotepad extends SimpleNotepad {
+
+	public SecuredNotepad(String name, int pages) {
+		super(name, pages);
+	}
 
 	private String password;
-	public boolean isNotepadSecured = false;
-
-	public String getPassword() {
-		return password;
-	}
+	private boolean isNotepadSecured = true;
 
 	public void setPassword(String password) {
 		this.password = password;
@@ -16,20 +16,16 @@ public class SecuredNotepad extends ElectronicSecuredNotepad {
 	public boolean checkPassword(String password) {
 		if (password.equals(this.password)) {
 			return true;
-		} else
-			return false;
-	}
-
-	// public void secureNotepadEnabled() {
-	// isNotepadSecured = true;
-	// }
-
-	public void togglePasswordMode() {
-		if (isNotepadSecured) {
-			isNotepadSecured = false;
 		} else {
-			isNotepadSecured = true;
+			return false;
 		}
 	}
 
+	public void togglePasswordMode() {
+		isNotepadSecured = !isNotepadSecured;
+	}
+
+	public boolean getNotepadSecureState() {
+		return isNotepadSecured;
+	}
 }
