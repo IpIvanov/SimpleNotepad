@@ -27,19 +27,11 @@ public class Page {
 	}
 
 	public boolean searchWord(String word) {
-		if (content.contains(word)) {
-			return true;
-		} else {
-			return false;
-		}
+		return content.contains(word);
 	}
 
 	public boolean containsDigits() {
-		if (content.matches(".*\\d+.*")) {
-			return true;
-		} else {
-			return false;
-		}
+		return content.matches(".*\\d+.*");
 	}
 
 }

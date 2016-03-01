@@ -9,7 +9,7 @@ public class SimpleNotepad implements INotepad {
 		notepadName = name;
 		numberOfPages = pages;
 		pagesArray = new Page[numberOfPages + 1];
-		for (int i = 1; i <= pages; i++) {
+		for (int i = 1; i < pagesArray.length; i++) {
 			pagesArray[i] = new Page("Default Title " + i, "Default Content " + i);
 		}
 	}
@@ -53,7 +53,7 @@ public class SimpleNotepad implements INotepad {
 	@Override
 	public void printNotepad(SimpleNotepad notePad) {
 		System.out.println("--------------------------------");
-		for (int i = 1; i <= numberOfPages; i++) {
+		for (int i = 1; i < pagesArray.length; i++) {
 			pagesArray[i].printPage();
 		}
 		System.out.println("--------------------------------");
@@ -61,7 +61,7 @@ public class SimpleNotepad implements INotepad {
 
 	@Override
 	public void searchWord(String word) {
-		for (int i = 1; i <= numberOfPages; i++) {
+		for (int i = 1; i < pagesArray.length; i++) {
 			if (pagesArray[i].searchWord(word)) {
 				System.out.println("--------------------------------");
 				System.out.println("The word " + word + " is in " + ordinal(i) + " page");
@@ -90,7 +90,7 @@ public class SimpleNotepad implements INotepad {
 
 	@Override
 	public void printAllPagesWithDigits() {
-		for (int i = 1; i <= numberOfPages; i++) {
+		for (int i = 1; i < pagesArray.length; i++) {
 			if (pagesArray[i].containsDigits()) {
 				System.out.println("--------------------------------");
 				pagesArray[i].printPage();
